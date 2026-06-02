@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeX Pro — Assembly Based Typing Analytics System</title>
+    <!-- Custom styling & Google Fonts for coding aesthetics -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glow-bg"></div>
+    
+
+    <div class="container">
+        <!-- Main Header -->
+        <header class="app-header">
+            <div class="logo-area">
+                <span class="logo-accent">
+                    <svg class="logo-icon-svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0">
+                        <defs>
+                            <mask id="header-logo-mask">
+                                <rect x="0" y="0" width="100" height="100" fill="white" />
+                                <rect x="54" y="21" width="4" height="2.5" rx="1.25" fill="black" />
+                                <rect x="60" y="21" width="20" height="2.5" rx="1.25" fill="black" />
+                                <rect x="54" y="27" width="26" height="2.5" rx="1.25" fill="black" />
+                                <rect x="54" y="33" width="26" height="2.5" rx="1.25" fill="black" />
+                                <rect x="20" y="54" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="30" y="54" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="40" y="54" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="50" y="54" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="60" y="54" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="70" y="54" width="10" height="6" rx="1.5" fill="black" />
+                                <rect x="20" y="63" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="30" y="63" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="40" y="63" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="50" y="63" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="60" y="63" width="20" height="6" rx="1.5" fill="black" />
+                                <rect x="20" y="72" width="12" height="6" rx="1.5" fill="black" />
+                                <rect x="35" y="72" width="35" height="6" rx="1.5" fill="black" />
+                                <rect x="73" y="72" width="7" height="6" rx="1.5" fill="black" />
+                            </mask>
+                        </defs>
+                        <g mask="url(#header-logo-mask)">
+                            <rect x="22" y="45" width="10" height="5" rx="1" fill="currentColor" />
+                            <path d="M27 45 V22 A 7 7 0 0 1 34 15 h 0 A 7 7 0 0 1 41 22 V30 H 45" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" />
+                            <circle cx="49" cy="30" r="2" fill="currentColor" />
+                            <rect x="48" y="16" width="37" height="26" rx="6" fill="currentColor" />
+                            <path d="M58 42 l 1 5 c 1 2, 3 2, 4 0 l 5 -5 Z" fill="currentColor" stroke-linejoin="round" />
+                            <rect x="16" y="50" width="68" height="34" rx="6" fill="currentColor" />
+                        </g>
+                    </svg>
+                </span>
+                <h1 id="app-title">TYPEX <span class="accent-text">PRO</span></h1>
+            </div>
+            
+            <div class="header-controls">
+                <!-- Theme Controller Widget -->
+                <div class="theme-controller">
+                    <button class="mode-toggle-btn" id="mode-toggle" title="Toggle Light/Dark Mode">
+                        <span class="mode-icon">🌙</span>
+                    </button>
+                    <div class="theme-picker-wrapper" id="theme-picker-wrapper">
+                        <button class="theme-select-btn" id="theme-select-btn">
+                            <span class="current-theme-dot"></span>
+                            <span id="current-theme-name">Classic</span>
+                            <span class="arrow">▼</span>
+                        </button>
+                        <div class="theme-dropdown" id="theme-dropdown">
+                            <div class="theme-option active" data-theme="default">
+                                <span class="theme-dot default"></span> Classic
+                            </div>
+                            <div class="theme-option" data-theme="cyberpunk">
+                                <span class="theme-dot cyberpunk"></span> Cyberpunk
+                            </div>
+                            <div class="theme-option" data-theme="hacker">
+                                <span class="theme-dot hacker"></span> Hacker
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Authentication Widget -->
+                <div class="auth-controller" id="auth-controller">
+                    <!-- Logged In state -->
+                    <div class="user-profile-badge" id="user-profile-badge" style="display: none;">
+                        <span class="user-avatar" style="display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px;">
+                            <svg class="user-avatar-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 100%; height: 100%;">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </span>
+                        <span class="user-name" id="header-username">Guest</span>
+                        <button class="logout-btn" id="btn-logout" title="Log Out">➔</button>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- Authentication Portal (Shown when logged out) -->
+        <div id="auth-portal" class="auth-portal card">
+            <div class="portal-header">
+                <span class="portal-icon">
+                    <svg class="logo-icon-svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0">
+                        <defs>
+                            <mask id="portal-logo-mask">
+                                <rect x="0" y="0" width="100" height="100" fill="white" />
+                                <rect x="54" y="21" width="4" height="2.5" rx="1.25" fill="black" />
+                                <rect x="60" y="21" width="20" height="2.5" rx="1.25" fill="black" />
+                                <rect x="54" y="27" width="26" height="2.5" rx="1.25" fill="black" />
+                                <rect x="54" y="33" width="26" height="2.5" rx="1.25" fill="black" />
+                                <rect x="20" y="54" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="30" y="54" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="40" y="54" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="50" y="54" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="60" y="54" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="70" y="54" width="10" height="6" rx="1.5" fill="black" />
+                                <rect x="20" y="63" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="30" y="63" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="40" y="63" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="50" y="63" width="7" height="6" rx="1.5" fill="black" />
+                                <rect x="60" y="63" width="20" height="6" rx="1.5" fill="black" />
+                                <rect x="20" y="72" width="12" height="6" rx="1.5" fill="black" />
+                                <rect x="35" y="72" width="35" height="6" rx="1.5" fill="black" />
+                                <rect x="73" y="72" width="7" height="6" rx="1.5" fill="black" />
+                            </mask>
+                        </defs>
+                        <g mask="url(#portal-logo-mask)">
+                            <rect x="22" y="45" width="10" height="5" rx="1" fill="currentColor" />
+                            <path d="M27 45 V22 A 7 7 0 0 1 34 15 h 0 A 7 7 0 0 1 41 22 V30 H 45" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" />
+                            <circle cx="49" cy="30" r="2" fill="currentColor" />
+                            <rect x="48" y="16" width="37" height="26" rx="6" fill="currentColor" />
+                            <path d="M58 42 l 1 5 c 1 2, 3 2, 4 0 l 5 -5 Z" fill="currentColor" stroke-linejoin="round" />
+                            <rect x="16" y="50" width="68" height="34" rx="6" fill="currentColor" />
+                        </g>
+                    </svg>
+                </span>
+                <h2>WELCOME TO <span class="accent-text">TYPEX PRO</span></h2>
+                <p>Sign in or create an account to practice</p>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" id="portal-tab-login">SIGN IN</button>
+                <button class="auth-tab-btn" id="portal-tab-signup">CREATE ACCOUNT</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="portal-form-login" class="auth-form">
+                <div class="form-group">
+                    <label for="portal-login-username">Username</label>
+                    <input type="text" id="portal-login-username" placeholder="Enter username" autocomplete="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="portal-login-password">Password</label>
+                    <input type="password" id="portal-login-password" placeholder="Enter password" autocomplete="current-password" required>
+                </div>
+                <div class="auth-error-msg" id="portal-login-error"></div>
+                <div class="portal-actions">
+                    <button type="submit" class="action-btn primary-btn btn-full">SIGN IN</button>
+                </div>
+            </form>
+
+            <!-- Signup Form (hidden initially) -->
+            <form id="portal-form-signup" class="auth-form" style="display: none;">
+                <div class="form-group">
+                    <label for="portal-signup-username">Username</label>
+                    <input type="text" id="portal-signup-username" placeholder="Choose username (3-20 chars)" autocomplete="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="portal-signup-email">Email Address</label>
+                    <input type="email" id="portal-signup-email" placeholder="Enter email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="portal-signup-password">Password</label>
+                    <input type="password" id="portal-signup-password" placeholder="Choose password (min 6 chars)" autocomplete="new-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="portal-signup-confirm-password">Confirm Password</label>
+                    <input type="password" id="portal-signup-confirm-password" placeholder="Confirm password" autocomplete="new-password" required>
+                </div>
+                <div class="auth-error-msg" id="portal-signup-error"></div>
+                <div class="portal-actions">
+                    <button type="submit" class="action-btn primary-btn btn-full">CREATE ACCOUNT</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Workspace Area (Hidden until logged in) -->
+        <div id="app-workspace" style="display: none;">
+            <!-- Floating bottom navbar -->
+            <nav class="floating-nav" id="workspace-nav">
+                <!-- Navigation Menu Container -->
+                <div class="nav-menu">
+                    <div class="nav-indicator" id="nav-indicator"></div>
+                    <button class="nav-item active" data-view="dashboard" title="Dashboard">
+                        <span class="nav-icon">
+                            <svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="7" height="5" rx="1.5"></rect>
+                                <rect x="3" y="10" width="7" height="11" rx="1.5"></rect>
+                                <rect x="12" y="3" width="9" height="10" rx="1.5"></rect>
+                                <rect x="12" y="15" width="9" height="6" rx="1.5"></rect>
+                            </svg>
+                        </span>
+                        <span class="nav-label">Dashboard</span>
+                    </button>
+                    <button class="nav-item" data-view="history" title="History">
+                        <span class="nav-icon">
+                            <svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                                <path d="M3 3v5h5"></path>
+                                <path d="M12 7v5l4 2"></path>
+                            </svg>
+                        </span>
+                        <span class="nav-label">History</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Main Content Area containing views -->
+            <main class="workspace-content">
+                <!-- 1. Dashboard View (Practice & Results) -->
+                <div id="view-dashboard" class="view-panel active">
+                <!-- Controls Area -->
+                <div class="control-panel">
+                    <div class="difficulty-selector">
+                        <span class="section-label">Select Challenge:</span>
+                        <div class="btn-group">
+                            <button class="diff-btn active" id="diff-easy" data-difficulty="easy">EASY</button>
+                            <button class="diff-btn" id="diff-medium" data-difficulty="medium">MEDIUM</button>
+                            <button class="diff-btn" id="diff-hard" data-difficulty="hard">HARD</button>
+                            <button class="diff-btn" id="diff-custom" data-difficulty="custom">CUSTOM</button>
+                        </div>
+                    </div>
+                    <div class="language-selector">
+                        <span class="section-label">Language:</span>
+                        <div class="lang-dropdown-wrapper">
+                            <select id="lang-select" class="lang-select-elem">
+                                <option value="english">English</option>
+                                <option value="spanish">Español (Spanish)</option>
+                                <option value="french">Français (French)</option>
+                                <option value="german">Deutsch (German)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button id="btn-start" class="action-btn primary-btn">START TEST</button>
+                        <button id="btn-reset" class="action-btn secondary-btn" disabled>RESET</button>
+                    </div>
+                </div>
+
+                <!-- Live Racing HUD -->
+                <div class="racing-hud card">
+                    <div class="hud-item timer-hud">
+                        <span class="hud-label">TIMER</span>
+                        <span class="hud-value" id="timer-value">--s</span>
+                    </div>
+                    <div class="hud-item mistakes-hud">
+                        <span class="hud-label">MISTAKES</span>
+                        <span class="hud-value" id="live-mistakes">0</span>
+                    </div>
+                    <div class="hud-item combo-hud">
+                        <span class="hud-label">COMBO STREAK</span>
+                        <span class="hud-value" id="live-combo">0x</span>
+                    </div>
+                    
+                    <!-- AI Opponent Track -->
+                    <div class="race-track">
+                        <div class="track-lane">
+                            <div class="racer-label">YOU:</div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar player-progress" id="player-progress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="track-lane">
+                            <div class="racer-label">TIME:</div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar ai-progress" id="ai-progress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Typing Box -->
+                <main class="typing-interface card" id="typing-card">
+                    <!-- Invisible text input to capture mobile/physical keyboards smoothly -->
+                    <input type="text" id="keyboard-capturer" autocomplete="off" autofocus disabled>
+                    
+                    <div class="paragraph-display" id="paragraph-container">
+                        <div class="placeholder-msg">Select difficulty and click START TEST to begin...</div>
+                    </div>
+                    <div class="typing-focus-overlay" id="focus-overlay">
+                        <span>Click here to focus and type!</span>
+                    </div>
+                </main>
+
+                <!-- Final Report (Calculated by Assembly, parsed by backend) -->
+                <section class="results-dashboard" id="results-dashboard" style="display: none;">
+                    <h2 class="section-title">
+                        <span class="logo-accent" style="vertical-align: middle; margin-right: 8px; display: inline-block;">
+                            <svg class="logo-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;">
+                                <line x1="3" y1="20" x2="21" y2="20"></line>
+                                <rect x="5" y="14" width="2.5" height="6" rx="0.5" fill="currentColor" stroke="none"></rect>
+                                <rect x="9.5" y="11" width="2.5" height="9" rx="0.5" fill="currentColor" stroke="none"></rect>
+                                <rect x="14" y="8" width="2.5" height="12" rx="0.5" fill="currentColor" stroke="none"></rect>
+                                <rect x="18.5" y="5" width="2.5" height="15" rx="0.5" fill="currentColor" stroke="none"></rect>
+                                <path d="M4 14Q10 13 20 4" fill="none"></path>
+                                <path d="M15 4h5v5" fill="none"></path>
+                            </svg>
+                        </span>
+                        PERFORMANCE ANALYTICS
+                    </h2>
+                    
+                    <div class="results-grid">
+                        <!-- WPM Card -->
+                        <div class="result-card glow-blue">
+                            <span class="res-title">WORDS PER MINUTE</span>
+                            <span class="res-val" id="res-wpm">0</span>
+                            <span class="res-desc">Speed score</span>
+                        </div>
+                        <!-- Accuracy Card -->
+                        <div class="result-card glow-green">
+                            <span class="res-title">ACCURACY METER</span>
+                            <span class="res-val" id="res-accuracy">0%</span>
+                            <span class="res-desc" id="res-chars-breakdown">0 / 0 characters</span>
+                        </div>
+                        <!-- Score Card -->
+                        <div class="result-card glow-gold">
+                            <span class="res-title">TOTAL SCORE</span>
+                            <span class="res-val" id="res-score">0</span>
+                            <span class="res-desc">Combo & accuracy weighted</span>
+                        </div>
+                        <!-- Rank Card -->
+                        <div class="result-card glow-purple">
+                            <span class="res-title">PERFORMANCE RANK</span>
+                            <span class="res-val" id="res-rank">Elite</span>
+                            <span class="res-desc">Based on speed benchmark</span>
+                        </div>
+                    </div>
+
+                    <!-- Weak Key Heatmap (Assembly tracked character mistakes) -->
+                    <div class="heatmap-section card">
+                        <h3 class="heatmap-title">WEAK CHARACTER HEATMAP</h3>
+                        <p class="heatmap-desc">Shows keys missed during the test. Darker red indicates higher frequency of mistakes, tracked character-by-character in memory by the Assembly engine.</p>
+                        
+                        <div class="keyboard-layout">
+                            <!-- Row 1 -->
+                            <div class="kb-row">
+                                <div class="key" data-key="Q">Q</div>
+                                <div class="key" data-key="W">W</div>
+                                <div class="key" data-key="E">E</div>
+                                <div class="key" data-key="R">R</div>
+                                <div class="key" data-key="T">T</div>
+                                <div class="key" data-key="Y">Y</div>
+                                <div class="key" data-key="U">U</div>
+                                <div class="key" data-key="I">I</div>
+                                <div class="key" data-key="O">O</div>
+                                <div class="key" data-key="P">P</div>
+                            </div>
+                            <!-- Row 2 -->
+                            <div class="kb-row">
+                                <div class="key" data-key="A">A</div>
+                                <div class="key" data-key="S">S</div>
+                                <div class="key" data-key="D">D</div>
+                                <div class="key" data-key="F">F</div>
+                                <div class="key" data-key="G">G</div>
+                                <div class="key" data-key="H">H</div>
+                                <div class="key" data-key="J">J</div>
+                                <div class="key" data-key="K">K</div>
+                                <div class="key" data-key="L">L</div>
+                            </div>
+                            <!-- Row 3 -->
+                            <div class="kb-row">
+                                <div class="key" data-key="Z">Z</div>
+                                <div class="key" data-key="X">X</div>
+                                <div class="key" data-key="C">C</div>
+                                <div class="key" data-key="V">V</div>
+                                <div class="key" data-key="B">B</div>
+                                <div class="key" data-key="N">N</div>
+                                <div class="key" data-key="M">M</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="view-history" class="view-panel">
+                <section class="history-dashboard card" style="margin-top: 0;">
+                    <h3 class="history-title">Practice History</h3>
+                    <p class="history-desc">Your past practice records</p>
+                    <div class="table-container">
+                        <table class="history-table">
+                            <thead>
+                                <tr>
+                                    <th>DATE</th>
+                                    <th>DIFFICULTY</th>
+                                    <th>WPM</th>
+                                    <th>ACCURACY</th>
+                                    <th>SCORE</th>
+                                    <th>RANK</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-list">
+                                <tr>
+                                    <td colspan="7" class="no-history-msg">No practice runs logged yet. Let's practice!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Custom Paragraph Modal -->
+    <div class="modal-overlay" id="custom-modal">
+        <div class="modal-card card">
+            <h3 class="modal-title" style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="display: inline-flex; width: 22px; height: 22px; color: var(--neon-blue);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 100%; height: 100%;">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </span>
+                Practice Custom Text
+            </h3>
+            <p class="modal-desc">Paste or write your custom text below (maximum 1000 characters). This will be loaded into the typing engine.</p>
+            <textarea id="custom-text-input" placeholder="Type or paste your text here..." maxlength="1000"></textarea>
+            <div class="modal-info">
+                <span id="char-counter">0/1000 chars</span>
+            </div>
+            <div class="modal-actions">
+                <button class="action-btn secondary-btn" id="btn-modal-cancel">CANCEL</button>
+                <button class="action-btn primary-btn" id="btn-modal-save">SAVE TEXT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Logic -->
+    <script src="script.js"></script>
+</body>
+</html>

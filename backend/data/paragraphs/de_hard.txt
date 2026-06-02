@@ -1,0 +1,5 @@
+Quantencomputing nutzt Superposition fuer komplexe Berechnungen auf Systemen.
+Algorithmen der kuenstlichen Intelligenz erfordern Grafikprozessoren mit hoher Leistung.
+Verteilte Datenbanksysteme replizieren Daten fuer eine hohe Verfuegbarkeit im Netz.
+Sicherheitsexperten installieren Erkennungssysteme zur Ueberwachung des Datenverkehrs.
+Microservices-Architekturen entkoppeln monolithische Softwaresysteme in Dienste.

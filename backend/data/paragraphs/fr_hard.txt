@@ -1,0 +1,5 @@
+L'informatique quantique utilise la superposition pour effectuer des calculs complexes.
+Les algorithmes d'intelligence artificielle necessitent des GPU a hautes performances.
+Les bases de donnees distribuees repliquent les donnees pour une haute disponibilite.
+Les experts deploient des systemes de detection pour surveiller le trafic reseau.
+L'architecture de microservices decouple les systemes monolithiques en applications autonomes.

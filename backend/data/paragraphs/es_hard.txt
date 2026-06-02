@@ -1,0 +1,5 @@
+La computacion cuantica utiliza la superposicion para realizar calculos complejos.
+Los algoritmos de inteligencia artificial requieren procesadores graficos de alto rendimiento.
+Los sistemas distribuidos replican datos en nodos separados para garantizar disponibilidad.
+Los profesionales de la seguridad despliegan sistemas de deteccion para vigilar el trafico.
+La arquitectura de microservicios divide sistemas monoliticos en despliegues independientes.

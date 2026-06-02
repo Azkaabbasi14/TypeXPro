@@ -1,0 +1,7 @@
+WPM: 15
+Accuracy: 42
+CorrectChars: 20
+WrongChars: 27
+Score: 65
+Rank: Beginner
+Mistakes: A:2, D:1, E:4, H:1, I:1, N:2, S:4, T:5, W:1

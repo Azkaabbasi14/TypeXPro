@@ -1,0 +1,5 @@
+La programmation est l'art d'exprimer des algorithmes dans des langages executables.
+Les developpeurs utilisent HTML pour structurer et CSS pour le style des pages web.
+Les systemes de gestion de bases de donnees organisent les informations pour la recherche.
+L'apprentissage d'une langue ouvre de nouvelles perspectives sur d'autres cultures.
+L'exercice regulier aide a maintenir la sante physique et la clarte mentale.

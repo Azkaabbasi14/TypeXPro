@@ -1,0 +1,5 @@
+La programacion es el arte de expresar algoritmos en lenguajes que las computadoras ejecutan.
+Los desarrolladores web usan HTML para estructurar y CSS para el estilo visual de paginas.
+Los sistemas de bases de datos organizan grandes volumenes de informacion para busquedas.
+Aprender un nuevo idioma abre frescas perspectivas sobre diferentes culturas.
+El ejercicio regular ayuda a mantener la salud fisica y la claridad mental.

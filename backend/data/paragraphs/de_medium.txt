@@ -1,0 +1,5 @@
+Programmierung ist die Kunst, Algorithmen in ausfuehrbaren Sprachen auszudruecken.
+Webentwickler verwenden HTML fuer Struktur und CSS fuer die visuelle Gestaltung.
+Datenbanksysteme speichern und organisieren grosse Mengen an Informationen fuer Suchen.
+Das Erlernen einer Sprache oeffnet neue Perspektiven auf Kulturen.
+Regelmaessige Bewegung hilft, die Fitness und geistige Klarheit zu foerdern.
