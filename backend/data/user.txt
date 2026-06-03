@@ -122,6 +122,17 @@
         "originalText": "The sun rises in the east and sets in the west.",
         "typedText": "ahe sun rises in the jhfjyfyfyfyfyguiguifiufuif",
         "timeSeconds": 16
+      },
+      {
+        "timestamp": "2026-06-03T03:12:08.713Z",
+        "wpm": 24,
+        "accuracy": 80,
+        "score": 300,
+        "rank": "Beginner",
+        "difficulty": "easy",
+        "originalText": "A quick brown fox jumps over the lazy dog.",
+        "typedText": "A qyuick rown fox jumps over the lazy dobg",
+        "timeSeconds": 17
       }
     ]
   },

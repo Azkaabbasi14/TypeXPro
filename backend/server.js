@@ -146,19 +146,38 @@ app.get('/api/paragraph', async (req, res) => {
         const difficulty = req.query.difficulty || 'easy';
         const language = req.query.language || 'english';
         
-        // Execute the engine to choose paragraph and write to data/input_original.txt
-        await runEngine(['--get-paragraph', difficulty, language]);
+        // Map language name to short code
+        let lang = 'en';
+        if (language === 'spanish') lang = 'es';
+        else if (language === 'french') lang = 'fr';
+        else if (language === 'german') lang = 'de';
         
-        const originalPath = path.join(DATA_DIR, 'input_original.txt');
-        if (fs.existsSync(originalPath)) {
-            const paragraph = fs.readFileSync(originalPath, 'utf8').trim();
-            res.json({ paragraph });
-        } else {
-            res.status(500).json({ error: 'Failed to generate paragraph file.' });
+        // Read paragraphs file
+        const filePath = path.join(PARAGRAPHS_DIR, `${lang}_${difficulty}.txt`);
+        if (!fs.existsSync(filePath)) {
+            return res.status(404).json({ error: `Paragraph file not found: ${lang}_${difficulty}.txt` });
         }
+        
+        const content = fs.readFileSync(filePath, 'utf8');
+        // Split content by carriage return/line feed to get separate sentences
+        const lines = content.split(/\r?\n/).map(line => line.trim()).filter(line => line.length > 0);
+        
+        if (lines.length === 0) {
+            return res.status(500).json({ error: 'No sentences found in paragraph file.' });
+        }
+        
+        // Pick a random sentence
+        const randomIndex = Math.floor(Math.random() * lines.length);
+        const paragraph = lines[randomIndex];
+        
+        // Write the chosen sentence to data/input_original.txt (so the assembly calculation engine has access to it)
+        const originalPath = path.join(DATA_DIR, 'input_original.txt');
+        fs.writeFileSync(originalPath, paragraph, 'utf8');
+        
+        res.json({ paragraph });
     } catch (err) {
-        console.error('Error running Assembly engine:', err);
-        res.status(500).json({ error: 'Server error running Assembly engine.' });
+        console.error('Error reading paragraph in JS:', err);
+        res.status(500).json({ error: 'Server error selecting paragraph.' });
     }
 });
 
